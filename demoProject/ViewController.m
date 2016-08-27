@@ -112,9 +112,15 @@
                 [cell.contentView addSubview:temperatureNameLabel];
             });
             
+        
         } failure:^(NSURLSessionTask *operation, NSError *error) {
             NSLog(@"Error: %@", error);
         }];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, 50, 60, 60)];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:@"https://c2.staticflickr.com/2/1107/3172320092_6d18a874b5.jpg"] placeholderImage:[UIImage imageNamed:@"defaultl_image"]];
+        [cell.contentView addSubview:imageView];
+
+        
         return cell;
     }
 
