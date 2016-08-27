@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
-                <outlet property="collectionView" destination="kaf-Bs-htT" id="0Ib-Xh-28n"/>
+                <outlet property="collectionView" destination="kaf-Bs-htT" id="KwO-Lf-tcb"/>
+                <outlet property="verticalCollectionView" destination="ANX-8l-avg" id="EPl-Kp-h4b"/>
                 <outlet property="view" destination="vqi-c1-uvC" id="kkj-ZL-Kov"/>
             </connections>
         </placeholder>
@@ -16,8 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Bs-htT">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Bs-htT" userLabel="horizontal">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="w2S-T1-xb9"/>
                     </constraints>
@@ -28,11 +30,27 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ANX-8l-avg" userLabel="vertical">
+                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="bcb-5f-JJq">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="ANX-8l-avg" secondAttribute="trailing" id="FKx-Iz-3rt"/>
+                <constraint firstItem="ANX-8l-avg" firstAttribute="top" secondItem="kaf-Bs-htT" secondAttribute="bottom" id="Fff-YA-gwZ"/>
                 <constraint firstAttribute="trailing" secondItem="kaf-Bs-htT" secondAttribute="trailing" id="JFF-NE-fZ4"/>
+                <constraint firstAttribute="bottom" secondItem="ANX-8l-avg" secondAttribute="bottom" id="aXz-zO-bsK"/>
                 <constraint firstItem="kaf-Bs-htT" firstAttribute="leading" secondItem="vqi-c1-uvC" secondAttribute="leading" id="cXe-8o-zgo"/>
+                <constraint firstItem="ANX-8l-avg" firstAttribute="leading" secondItem="vqi-c1-uvC" secondAttribute="leading" id="vDT-RF-WKh"/>
                 <constraint firstItem="kaf-Bs-htT" firstAttribute="top" secondItem="vqi-c1-uvC" secondAttribute="top" id="w4D-by-huV"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
