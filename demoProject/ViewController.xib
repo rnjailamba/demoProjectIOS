@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="collectionView" destination="kaf-Bs-htT" id="0Ib-Xh-28n"/>
                 <outlet property="view" destination="vqi-c1-uvC" id="kkj-ZL-Kov"/>
             </connections>
         </placeholder>
@@ -14,7 +15,27 @@
         <view contentMode="scaleToFill" id="vqi-c1-uvC">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Bs-htT">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="w2S-T1-xb9"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="43v-E5-4sn">
+                        <size key="itemSize" width="0.0" height="0.0"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="kaf-Bs-htT" secondAttribute="trailing" id="JFF-NE-fZ4"/>
+                <constraint firstItem="kaf-Bs-htT" firstAttribute="leading" secondItem="vqi-c1-uvC" secondAttribute="leading" id="cXe-8o-zgo"/>
+                <constraint firstItem="kaf-Bs-htT" firstAttribute="top" secondItem="vqi-c1-uvC" secondAttribute="top" id="w4D-by-huV"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
