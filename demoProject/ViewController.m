@@ -67,6 +67,7 @@
         cell.backgroundColor = [self randomNiceColor];
         [button setTitle:@"Baha'i2" forState:UIControlStateNormal];
     }
+    [button setEnabled:NO];//so that did select works
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cell.contentView addSubview:button];
     return cell;
@@ -77,6 +78,10 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.collectionView.frame.size.width/2, self.collectionView.frame.size.height);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 - (UIColor *)randomNiceColor
