@@ -29,6 +29,11 @@
 -(void)registerNib{
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
 }
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -48,21 +53,22 @@
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//    cell.frame = CGRectMake(20 + indexPath.row*40, 0, 30, 20);
-//    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 40, 20)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0,0, self.collectionView.frame.size.width/2,self.collectionView.frame.size.height)];
+
     if(indexPath.row == 0){
-        cell.backgroundColor = [UIColor whiteColor];
-        
+        cell.backgroundColor = [self randomNiceColor];
+        [button setTitle:@"Baha'i" forState:UIControlStateNormal];
     }
     if(indexPath.row == 1){
-        cell.backgroundColor = [UIColor greenColor];
-
+        cell.backgroundColor = [self randomNiceColor];
+        [button setTitle:@"Baha'i1" forState:UIControlStateNormal];
     }
     if(indexPath.row == 2){
-        cell.backgroundColor = [UIColor whiteColor];
-
+        cell.backgroundColor = [self randomNiceColor];
+        [button setTitle:@"Baha'i2" forState:UIControlStateNormal];
     }
-//    [cell.contentView addSubview:button];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [cell.contentView addSubview:button];
     return cell;
     
 }
@@ -71,6 +77,19 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.collectionView.frame.size.width/2, self.collectionView.frame.size.height);
+}
+
+- (UIColor *)randomNiceColor
+{
+    CGFloat hue = (arc4random() % 360) / 359.0f;
+    CGFloat saturation = (float)arc4random() / UINT32_MAX;
+    CGFloat brightness = (float)arc4random() / UINT32_MAX;
+    saturation = saturation < 0.5 ? 0.5 : saturation;
+    brightness = brightness < 0.9 ? 0.9 : brightness;
+    return [UIColor colorWithHue:hue
+                      saturation:saturation
+                      brightness:brightness
+                           alpha:0.8];
 }
 
 
