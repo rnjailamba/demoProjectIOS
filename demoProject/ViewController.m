@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import <AFNetworking/AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#define open_weather_api_key @"1255ba5f70cf5adf3bd2ba9aaa7dd1dc"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -81,7 +84,37 @@
     }
     else{
         UICollectionViewCell *cell = [self.verticalCollectionView dequeueReusableCellWithReuseIdentifier:@"cellImage" forIndexPath:indexPath];
+        for (UIView *subview in [cell.contentView subviews]) {
+            [subview removeFromSuperview];
+        }
         cell.backgroundColor = [self randomNiceColor];
+        NSDictionary *parameters = @{@"q":@"Delhi",
+                                     @"APPID":open_weather_api_key,
+                                     @"units":@"metric"};
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        [manager GET:@"http://api.openweathermap.org/data/2.5/weather" parameters:parameters success:^(NSURLSessionTask *task, id responseObject) {
+            
+            //Get Temprature
+            id obj = [responseObject objectForKey:@"main"];
+            NSString *temp = [obj objectForKey:@"temp"];
+            NSInteger tempInt = [temp intValue];
+            id obj1 = [responseObject objectForKey:@"weather"];
+            NSString *temp1 = [obj1[0] objectForKey:@"main"];
+
+            NSLog(@"tempname: %@", temp1);
+            NSLog(@"tempInt: %ld", (long)tempInt);
+            dispatch_async(dispatch_get_main_queue(), ^(){
+                UILabel *temperatureNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 24, 100, 16)];
+                temperatureNameLabel.text = temp1;
+                [temperatureNameLabel setFont:[UIFont  systemFontOfSize:12 weight:UIFontWeightMedium]];
+                temperatureNameLabel.textColor = [UIColor whiteColor];
+                [cell.contentView addSubview:temperatureNameLabel];
+            });
+            
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
         return cell;
     }
 
